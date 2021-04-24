@@ -9,14 +9,15 @@ Codes for our EACL paper &lt;Is “hot pizza” Positive or Negative? Mining Tar
 
 # Distant Supervision
 export GLUE_DIR=.
+
 export TASK_NAME=sentiment_res
 
 python DistantSupervision.py --evaluate_during_training --overwrite_output_dir --local_rank -1 --model_type bert --model_name_or_path bert-base-uncased --task_name $TASK_NAME --do_train --do_eval --do_lower_case --data_dir $GLUE_DIR/$TASK_NAME --max_seq_length 500 --per_gpu_eval_batch_size 8 --per_gpu_train_batch_size 8 --learning_rate 2e-5 --num_train_epochs 5.0 --output_dir ./tmp_res/$TASK_NAME/ > log_.out
 
 
 # Discrete/Continuous Perturbation
-python DiscretePerturbation.py
-python ContinuousPerturbation.py
+- python DiscretePerturbation.py
+- python ContinuousPerturbation.py
 
 # Lexicon
 python Obtain_TopK.py
